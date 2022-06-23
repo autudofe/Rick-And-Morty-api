@@ -43,7 +43,7 @@ const Search = styled("div")(({theme}) => ({
 
 const defaultResults = [];
 
-const Navbar = ({results = defaultResults, setSearch, setPageNumber}) => {
+const Navbar = ({results = defaultResults, setSearch, setPageNumber, likesData, setLikesData}) => {
   const {setUser, user} = useContext(UserContext);
   const {param} = useParams();
   const navigate = useNavigate();
@@ -146,6 +146,7 @@ const Navbar = ({results = defaultResults, setSearch, setPageNumber}) => {
                 <HomeIcon/>
               </IconButton>
               <IconButton
+                  disabled={!likesData.like.length}
                   sx={{pl: 0}}
                   size="large"
                   onClick={() => navigate("/charactersList/like")}
@@ -157,6 +158,7 @@ const Navbar = ({results = defaultResults, setSearch, setPageNumber}) => {
                 <ThumbUpIcon/>
               </IconButton>
               <IconButton
+                  disabled={!likesData.dislike.length}
                   sx={{pl: 0}}
                   size="large"
                   onClick={() => navigate("/charactersList/dislike")}
